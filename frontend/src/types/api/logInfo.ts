@@ -1,0 +1,38 @@
+//ログ情報Type
+export type LogInfo = {
+    log_id:number;
+    num_of_dives:number;
+    dive_date:string;
+    dive_spots:string;
+    dive_style:string;
+    purpose:string;
+    dive_point_name:string;
+    dive_start_time:string;
+    dive_end_time:string;
+    dive_time:number;
+    maxi_depth:number;
+    age_depth:number;
+    tank_start_pressure:number;
+    tank_end_pressure:number;
+    water_temp_surface:string;
+    water_temp_bottom:string;
+    weather:string;
+    wind:string;
+    sea_level:string;
+    around_the_tide:string;
+    high_tide:string;
+    low_tide:string;
+    suit:string;
+    suit_thickness:string;
+    water_transparency:string;
+    mood:string;
+    weight:number;
+    uncle:string;
+    tank_type:string;
+    tank_liter:string;
+    remarks:string;
+    buddy_sign:string;
+    instructor_sign:string;
+    img:string;
+    user_id:number;
+}
