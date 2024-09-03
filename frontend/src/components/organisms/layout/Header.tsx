@@ -23,7 +23,7 @@ export const Header:VFC = memo(() => {
             <Flex as="nav" bg="orange.300" h="10vh" align="center" color="white" justify="space-between" boxShadow="dark-lg" rounded="md">
 
 
-                    <Heading fontFamily="'Arizonia', cursive" letterSpacing="0.1em"  as="h1" fontSize="6xl" ml="10" bgGradient="linear(to-l, #7928CA, #FF0080)" bgClip="text" fontWeight="extrabold">Diving App</Heading>
+                    <Heading fontFamily="'Arizonia', cursive" letterSpacing="0.1em"  as="h1" fontSize="6xl" ml="10" bgGradient="linear(to-l, #7928CA, #FF0080)" bgClip="text" fontWeight="extrabold">Diving App New</Heading>
                 
                     <Flex>
                         <Center>
