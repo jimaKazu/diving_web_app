@@ -1,4 +1,4 @@
-import { memo, VFC, useCallback, useState, ChangeEvent, useEffect } from "react";
+import { memo, VFC, useCallback, useState, ChangeEvent, useEffect,useMemo } from "react";
 import { useHistory } from "react-router-dom";
 import {
     Box,
@@ -52,7 +52,7 @@ import { FcLike } from "react-icons/fc";
 import { motion } from "framer-motion";
 import { DivingSpotsCard } from "../atoms/DivingSpotsCard"; // 上記のProfileCardをインポート
 
-import { GoogleMap, LoadScript, Marker } from "@react-google-maps/api";
+import { GoogleMap, LoadScript, Marker,useLoadScript } from "@react-google-maps/api";
 
 const japanCenter = { lat: 36.2048, lng: 138.2529 }; // 日本の中心に近い緯度経度
 
@@ -197,9 +197,16 @@ const cardVariants = {
     visible: { opacity: 1, y: 0 },
 };
 
+
+
+
+
+
+
+
+
 export const DivingSpots: VFC = memo(() => {
 
-    const googleMapsApiKey = process.env.REACT_APP_GOOGLE_MAPS_API_KEY;
     const [selectedSpot, setSelectedSpot] = useState(null); // 選択されたスポットの状態
     const { isOpen, onOpen, onClose } = useDisclosure();
 
@@ -207,6 +214,17 @@ export const DivingSpots: VFC = memo(() => {
         setSelectedSpot(spot);
         onOpen(); // モーダルを開く
     }, [onOpen]);
+
+    const googleMapsApiKey = process.env.REACT_APP_GOOGLE_MAPS_API_KEY; // 環境変数からAPIキーを取得
+    const { isLoaded, loadError } = useLoadScript({
+        googleMapsApiKey: googleMapsApiKey, // APIキーを設定
+    });
+
+        // マーカーのホバー状態を追跡するための状態
+        const [hoveredMarkerId, setHoveredMarkerId] = useState(null);
+
+    if (loadError) return <div>Error loading maps</div>;
+    if (!isLoaded) return <div>Loading Maps...</div>;
 
     return (
         <>
@@ -248,7 +266,6 @@ export const DivingSpots: VFC = memo(() => {
                         {/* ここに地図を表示する */}
 
                         <Box bg="white" p={3} w="100%" h="50vh" borderRadius="lg">
-                            <LoadScript googleMapsApiKey={googleMapsApiKey}>
                                 <GoogleMap
                                     mapContainerStyle={{ width: "100%", height: "100%" }}
                                     center={japanCenter}
@@ -260,10 +277,18 @@ export const DivingSpots: VFC = memo(() => {
                                         position={spot.location}
                                         label={spot.divingSpotsName}
                                         onClick={() => handleMarkerClick(spot)}
+                                        icon={{
+                                            url: "/googlemap_marker02.png",
+                                            scaledSize: new window.google.maps.Size(
+                                                hoveredMarkerId === spot.spotId ? 40 : 30, // ホバー時にサイズを変更
+                                                hoveredMarkerId === spot.spotId ? 60 : 50
+                                            ),
+                                        }}
+                                        onMouseOver={() => setHoveredMarkerId(spot.spotId)} // ホバー時に状態を更新
+                                        onMouseOut={() => setHoveredMarkerId(null)} // ホバーが外れたら状態をリセット
                                     />
                         ))}
                                 </GoogleMap>
-                            </LoadScript>
                         </Box>
 
                         {/* 地図終了 ---  */}

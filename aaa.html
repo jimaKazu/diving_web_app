@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>居酒屋 Modern</title>
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;700&family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #f4f4f4;
+            color: #333;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+        }
+
+        header {
+            background-color: #ff7043;
+            padding: 20px;
+            text-align: center;
+            color: white;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        header h1 {
+            font-family: 'Noto Serif JP', serif;
+            margin: 0;
+            font-size: 40px;
+            letter-spacing: 5px;
+        }
+
+        nav {
+            background-color: #ff5722;
+            padding: 10px;
+            text-align: center;
+            position: fixed;
+            width: 100%;
+            top: 80px;
+            left: 0;
+            z-index: 999;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        nav a {
+            color: white;
+            margin: 0 15px;
+            text-decoration: none;
+            font-size: 18px;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: #ffcc00;
+        }
+
+        /* スライドショーのスタイル */
+        .hero {
+            width: 100%;
+            height: 600px;
+            position: relative;
+            overflow: hidden;
+            margin-top: 160px;
+        }
+
+        .slides {
+            display: flex;
+            width: 300%;
+            height: 100%;
+            animation: slide 12s infinite ease-in-out; /* アニメーションを12秒でループ (4秒ごとに切り替え) */
+        }
+
+        .slide {
+            width: 100%;
+            height: 100%;
+            flex-shrink: 0;
+            background-size: cover; /* 画像全体が表示される */
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+
+        /* アニメーション (スムーズにスライド) */
+        @keyframes slide {
+            0%, 33% { transform: translateX(0); }
+            33.33%, 66.33% { transform: translateX(-100%); }
+            66.66%, 100% { transform: translateX(-200%); }
+        }
+
+        .hero h2 {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: white;
+            font-size: 56px;
+            font-family: 'Noto Serif JP', serif;
+            background-color: rgba(0, 0, 0, 0.5);
+            padding: 20px 40px;
+            border-radius: 8px;
+        }
+
+        section {
+            padding: 70px 20px;
+            text-align: center;
+            scroll-margin-top: 160px;
+            background-color: white;
+            margin: 40px 0;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        section h2 {
+            font-size: 36px;
+            font-family: 'Noto Serif JP', serif;
+            margin-bottom: 20px;
+            color: #ff5722;
+        }
+
+        section p {
+            font-size: 18px;
+            margin-bottom: 30px;
+            color: #666;
+        }
+
+        /* メニュー画像の固定表示 */
+        .menu-img {
+            width: 100%;
+            height: 300px;
+            background-size: cover; /* 画像全体が表示される */
+            background-position: center;
+            background-repeat: no-repeat;
+            border-radius: 8px;
+            margin-bottom: 30px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .menu-img h3 {
+            position: absolute;
+            bottom: 20px;
+            left: 20px;
+            color: white;
+            font-size: 28px;
+            background-color: rgba(0, 0, 0, 0.6);
+            padding: 10px;
+            border-radius: 5px;
+            font-family: 'Noto Serif JP', serif;
+        }
+
+        footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 20px;
+        }
+
+        footer a {
+            color: #ffcc00;
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        /* レスポンシブデザイン */
+        @media (max-width: 768px) {
+            .hero h2 {
+                font-size: 36px;
+                padding: 15px 20px;
+            }
+
+            section h2 {
+                font-size: 28px;
+            }
+
+            section p {
+                font-size: 16px;
+            }
+
+            .menu-img h3 {
+                font-size: 22px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>居酒屋 Modern</h1>
+    </header>
+
+    <nav>
+        <a href="#menu">メニュー</a>
+        <a href="#hours">営業時間</a>
+        <a href="#contact">お問い合わせ</a>
+    </nav>
+
+    <!-- スライドショー -->
+    <div class="hero">
+        <div class="slides">
+            <div class="slide" style="background-image: url('https://cdn.pixabay.com/photo/2015/04/08/13/13/food-712665_1280.jpg');"></div>
+            <div class="slide" style="background-image: url('https://cdn.pixabay.com/photo/2016/03/05/19/02/salmon-1238248_1280.jpg');"></div>
+            <div class="slide" style="background-image: url('https://cdn.pixabay.com/photo/2017/09/02/13/28/grill-2705420_1280.jpg');"></div>
+        </div>
+        <h2>和の風情を楽しむ</h2>
+    </div>
+
+    <section id="menu">
+        <h2>おすすめメニュー</h2>
+        <p>厳選された食材と職人の技が光る、当店自慢のメニューをお楽しみください。</p>
+
+        <!-- 固定画像 -->
+        <div class="menu-img" style="background-image: url('https://cdn.pixabay.com/photo/2017/05/07/08/56/sashimi-2299365_1280.jpg');">
+            <h3>新鮮なお刺身盛り合わせ</h3>
+        </div>
+
+        <div class="menu-item">🍺 ビール <span>500円</span></div>
+        <div class="menu-item">🥃 ハイボール <span>600円</span></div>
+        <div class="menu-item">🍋 レモンサワー <span>550円</span></div>
+        <div class="menu-item">🍷 赤ワイン <span>700円</span></div>
+    </section>
+
+    <section id="hours">
+        <h2>営業時間</h2>
+        <p>仕事終わりにふらっと立ち寄れる、温かい空間を提供しております。</p>
+        <p>月曜日～金曜日: 17:00 - 23:00</p>
+        <p>土曜日: 16:00 - 24:00</p>
+        <p>日曜日: 定休日</p>
+    </section>
+
+    <section id="contact">
+        <h2>お問い合わせ</h2>
+        <p>ご予約やご質問はこちらのフォームからどうぞ。</p>
+        <form action="#" method="post">
+            <label for="name">お名前:</label><br>
+            <input type="text" id="name" name="name" required><br><br>
+            <label for="email">メールアドレス:</label><br>
+            <input type="email" id="email" name="email" required><br><br>
+            <label for="message">メッセージ:</label><br>
+            <textarea id="message" name="message" rows="4" required></textarea><br><br>
+            <input type="submit" value="送信">
+        </form>
+    </section>
+
+    <footer>
+        <p>&copy; 2024 居酒屋 Modern. All Rights Reserved.</p>
+        <p><a href="#contact">お問い合わせはこちら</a></p>
+    </footer>
+
+</body>
+</html>
